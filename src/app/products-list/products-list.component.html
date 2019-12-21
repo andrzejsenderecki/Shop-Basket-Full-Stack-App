@@ -1,0 +1,14 @@
+<app-title [title]="title"></app-title>
+
+<ul *ngFor="let product of productsList">
+  <li>
+    {{ product.name }}
+  </li>
+  <li>
+    {{ product.price }}
+  </li>
+  <li>
+    {{ product.description }}
+  </li>
+  <li><button (click)="addToCard(product)">Dodaj do koszyka</button></li>
+</ul>

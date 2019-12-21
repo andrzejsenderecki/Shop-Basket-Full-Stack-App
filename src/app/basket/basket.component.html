@@ -1,0 +1,15 @@
+<app-title [title]="title"></app-title>
+
+<ng-template #ProductsInBasket>
+  <ul *ngFor="let product of basketContent">
+    <li>{{ product.name }}</li>
+  </ul>
+</ng-template>
+
+<ng-template #noProductsInBasket>
+  <p>Brak produktów w koszyku</p>
+</ng-template>
+
+<div *ngIf="basketContent.length > 0; then ProductsInBasket; else noProductsInBasket"></div>
+
+<p>Suma: {{ sum }} zł</p>
