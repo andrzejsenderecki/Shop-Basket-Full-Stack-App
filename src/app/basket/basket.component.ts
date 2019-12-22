@@ -9,9 +9,7 @@ import { BasketService } from '../services/basket.service';
 
 export class BasketComponent implements OnInit, DoCheck {
   title = 'Basket';
-  // sum = 0;
 
-  // @Input()
   basketContent = [];
   sum = 0;
 
@@ -32,21 +30,4 @@ export class BasketComponent implements OnInit, DoCheck {
     });
 
   }
-
-  // ngDoCheck() {
-  //   this.countSum();
-  // }
-
-  ngOnInit() {
-    
-  }
-
-  // countSum() {
-  //   if (this.basketContent.length > 0) {
-  //     this.sum = 0;
-  //     this.basketContent.forEach(element => {
-  //       this.sum = this.sum + Number(element.price);
-  //     });
-  //   }
-  // }
 }
