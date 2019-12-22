@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Product } from './models/product';
 
 @Component({
   selector: 'app-root',
@@ -7,30 +8,28 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  products = [
-    {
-      id: '1',
-      name: 'Rower',
-      price: '500',
-      description: 'Opis roweru'
-    },
-    {
-      id: '2',
-      name: 'Samochód',
-      price: '20000',
-      description: 'Opis samochodu'
-    },
-    {
-      id: '3',
-      name: 'Laptop',
-      price: '3000',
-      description: 'Opis laptopa'
-    }
-  ];
+  products: Array<Product> = [];
 
-  basket: Array<string> = [];
-
-  add(product: string) {
-      this.basket.push(product);
+  constructor() {
+    this.products = [
+      {
+        id: 1,
+        name: 'Rower',
+        price: 500,
+        description: 'Opis roweru'
+      },
+      {
+        id: 2,
+        name: 'Samochód',
+        price: 20000,
+        description: 'Opis samochodu'
+      },
+      {
+        id: 3,
+        name: 'Laptop',
+        price: 3000,
+        description: 'Opis laptopa'
+      }
+    ];
   }
 }

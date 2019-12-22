@@ -1,25 +1,24 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input } from '@angular/core';
+import { BasketService } from '../services/basket.service';
+import { Product } from '../models/product';
 
 @Component({
   selector: 'app-products-list',
   templateUrl: './products-list.component.html',
   styleUrls: ['./products-list.component.scss']
 })
-export class ProductsListComponent implements OnInit {
+export class ProductsListComponent {
   title = 'Products';
 
   @Input()
-  productsList = [];
+  productsList: Array<Product> = [];
 
-  @Output()
-  emitProduct = new EventEmitter<string>();
+  constructor(private basketBasketService: BasketService) {
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
-  addToCard(product: string) {
-    this.emitProduct.emit(product);
+  addToCard(product: Product) {
+    this.basketBasketService.add(product);
+    this.basketBasketService.countSum();
   }
 }

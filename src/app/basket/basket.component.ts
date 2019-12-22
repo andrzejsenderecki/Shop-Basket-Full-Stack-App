@@ -1,4 +1,5 @@
 import { Component, OnInit, Input, DoCheck } from '@angular/core';
+import { BasketService } from '../services/basket.service';
 
 @Component({
   selector: 'app-basket',
@@ -8,27 +9,44 @@ import { Component, OnInit, Input, DoCheck } from '@angular/core';
 
 export class BasketComponent implements OnInit, DoCheck {
   title = 'Basket';
+  // sum = 0;
+
+  // @Input()
+  basketContent = [];
   sum = 0;
 
-  @Input()
-  basketContent = [];
+  constructor(private basketBasketService: BasketService) {
+    this.basketBasketService.getBasketObs().subscribe(products => {
+      this.basketContent = products;
+    });
 
-  constructor() { }
+    this.basketBasketService.getSumObs().subscribe(sum => {
+      this.sum = sum;
+    });
+  }
 
   ngDoCheck() {
-    this.countSum();
+    this.basketBasketService.getSumObs().subscribe(sum => {
+      this.sum = sum;
+      console.log(sum);
+    });
+
   }
+
+  // ngDoCheck() {
+  //   this.countSum();
+  // }
 
   ngOnInit() {
-    this.countSum();
+    
   }
 
-  countSum() {
-    if (this.basketContent.length > 0) {
-      this.sum = 0;
-      this.basketContent.forEach(element => {
-        this.sum = this.sum + Number(element.price);
-      });
-    }
-  }
+  // countSum() {
+  //   if (this.basketContent.length > 0) {
+  //     this.sum = 0;
+  //     this.basketContent.forEach(element => {
+  //       this.sum = this.sum + Number(element.price);
+  //     });
+  //   }
+  // }
 }
